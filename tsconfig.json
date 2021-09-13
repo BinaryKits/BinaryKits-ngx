@@ -11,6 +11,12 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "paths": {
+      "ngx-mat-datepicker-simple-formatting": [
+        "dist/ngx-mat-datepicker-simple-formatting/ngx-mat-datepicker-simple-formatting",
+        "dist/ngx-mat-datepicker-simple-formatting"
+      ]
+    },
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
