@@ -10,6 +10,7 @@ export class NgxMatDatepickerSimpleFormattingDemoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("Loaded")
   }
 
 }
