@@ -1,6 +1,6 @@
 {
   "name": "@binarykits/ngx-mat-datepicker-simple-formatting",
-  "version": "12.0.0",
+  "version": "12.0.3",
   "peerDependencies": {
     "@angular/common": "^12.2.0",
     "@angular/core": "^12.2.0",
@@ -16,7 +16,7 @@
   "fesm2015": "fesm2015/ngx-mat-datepicker-simple-formatting.js",
   "typings": "ngx-mat-datepicker-simple-formatting.d.ts",
   "sideEffects": false,
-  "description": "This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.",
+  "description": "Freely set date format string when using angular material datepicker",
   "directories": {
     "lib": "lib"
   },
@@ -24,9 +24,18 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "angular",
-    "material"
+    "angular material",
+    "datepicker",
+	"dayjs"
   ],
   "author": "Yiping Ruan",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BinaryKits/BinaryKits-ngx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BinaryKits/BinaryKits-ngx/issues"
+  },
+  "homepage": "https://github.com/BinaryKits/BinaryKits-ngx/tree/master/projects/ngx-mat-datepicker-simple-formatting#readme"
 }
