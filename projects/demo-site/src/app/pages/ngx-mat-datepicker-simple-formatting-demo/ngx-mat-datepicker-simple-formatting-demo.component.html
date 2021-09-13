@@ -1,7 +1,30 @@
 <h2>Original mat-datepicker with NativeDateAdapter</h2>
 <mat-form-field appearance="fill">
     <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" bkMatDatepickerSimpleFormatting>
+    <input matInput [matDatepicker]="picker">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
+
+<h2>Date1 DD-MM-YYYY</h2>
+<mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <!-- For display and edit, same value as formControl -->
+    <input matInput [formControl]="date1" >
+
+    <!-- To hold picker's value, hidden -->
+    <input [matDatepicker]="picker1" [bkMatDatepickerSimpleFormatting]="{ formControl: date1, format: 'DD-MM-YYYY' }" class="shadow">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+<p>formControl value: {{ date1.value }}</p>
+
+<h2>Date2 YYYY-MM-DD</h2>
+<mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [formControl]="date2" >
+    <input [matDatepicker]="picker2" [bkMatDatepickerSimpleFormatting]="{ formControl: date2, format: 'YYYY-MM-DD' }" class="shadow">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>
+<p>formControl value: {{ date2.value }}</p>
