@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { NgxMatDatepickerSimpleFormattingComponent } from './ngx-mat-datepicker-simple-formatting.component';
+import { NgxMatDatepickerSimpleFormattingDirective } from './ngx-mat-datepicker-simple-formatting.directive';
 
 
 
 @NgModule({
   declarations: [
-    NgxMatDatepickerSimpleFormattingComponent
+    NgxMatDatepickerSimpleFormattingDirective
   ],
   imports: [
   ],
   exports: [
-    NgxMatDatepickerSimpleFormattingComponent
+    NgxMatDatepickerSimpleFormattingDirective
   ]
 })
 export class NgxMatDatepickerSimpleFormattingModule { }
