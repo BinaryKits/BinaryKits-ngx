@@ -9,7 +9,7 @@
 This directive extends [ngx-mask](https://github.com/JsDaddy/ngx-mask) which allows `input` and `formControl` date values having different formats:
 
 - Attribute binding/INPUT inherits from `ngx-mask`
-- Uses Angular's ControlValueAccessor to bridige between `input` and `formControl` values
+- Uses Angular's ControlValueAccessor to bridge between `input` and `formControl` values
 - Follow `dayjs` formatting
 
 
