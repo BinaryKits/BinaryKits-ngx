@@ -10,12 +10,6 @@
     "tslib": "^2.3.0"
   },
   "main": "bundles/ngx-mat-datepicker-simple-formatting.umd.js",
-  "module": "fesm2015/ngx-mat-datepicker-simple-formatting.js",
-  "es2015": "fesm2015/ngx-mat-datepicker-simple-formatting.js",
-  "esm2015": "esm2015/ngx-mat-datepicker-simple-formatting.js",
-  "fesm2015": "fesm2015/ngx-mat-datepicker-simple-formatting.js",
-  "typings": "ngx-mat-datepicker-simple-formatting.d.ts",
-  "sideEffects": false,
   "description": "Freely set date format string when using angular material datepicker",
   "directories": {
     "lib": "lib"
@@ -26,9 +20,9 @@
   "keywords": [
     "angular material",
     "datepicker",
-	"dayjs"
+	  "dayjs"
   ],
-  "author": "Yiping Ruan",
+  "author": "Ruan Yiping",
   "license": "MIT",
   "repository": {
     "type": "git",

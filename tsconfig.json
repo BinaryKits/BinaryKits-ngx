@@ -14,6 +14,10 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
+      "ngx-mask-date": [
+        "dist/ngx-mask-date/ngx-mask-date",
+        "dist/ngx-mask-date"
+      ],
       "ngx-mat-datepicker-simple-formatting": [
         "dist/ngx-mat-datepicker-simple-formatting/ngx-mat-datepicker-simple-formatting",
         "dist/ngx-mat-datepicker-simple-formatting"
