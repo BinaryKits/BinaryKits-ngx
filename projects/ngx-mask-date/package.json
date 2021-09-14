@@ -1,6 +1,6 @@
 {
   "name": "@binarykits/ngx-mask-date",
-  "version": "12.0.1",
+  "version": "12.0.2",
   "peerDependencies": {
     "@angular/common": "^12.2.0",
     "@angular/core": "^12.2.0",
