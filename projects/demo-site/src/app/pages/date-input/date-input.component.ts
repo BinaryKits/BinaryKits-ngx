@@ -14,7 +14,12 @@ export class DateInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.date1.valueChanges.subscribe(x => console.log(x))
+    this.date1.valueChanges.subscribe(x => this.log('date1', x))
+    this.date2.valueChanges.subscribe(x => this.log('date2', x))
+    this.date3.valueChanges.subscribe(x => this.log('date3', x))
   }
 
+  log(name: string, value: any): void {
+    console.log(name, value)
+  }
 }

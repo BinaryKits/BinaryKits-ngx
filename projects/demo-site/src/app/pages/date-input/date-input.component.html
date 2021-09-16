@@ -6,7 +6,7 @@
     <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
-<h2>Date1 DD-MM-YYYY</h2>
+<h2>Date1 DD-MM-YYYY (updateOn: 'blur')</h2>
 <mat-form-field appearance="fill">
     <mat-label>Choose a date</mat-label>
     <!-- For display and edit, same value as formControl -->
@@ -29,6 +29,6 @@
 </mat-form-field>
 <p>formControl value: {{ date2.value }}</p>
 
-<h2>Date3 YYYY-MM-DD (No picker)</h2>
-<input [formControl]="date3" />
+<h2>Date3 YYYY/MM/DD (No picker)</h2>
+<input [formControl]="date3" bkMaskDate="0000/M0/d0" userInputFormat="YYYY/MM/DD" />
 <p>formControl value: {{ date3.value }}</p>
