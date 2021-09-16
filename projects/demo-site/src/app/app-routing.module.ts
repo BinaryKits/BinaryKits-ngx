@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NgxMatDatepickerSimpleFormattingDemoComponent } from './pages/ngx-mat-datepicker-simple-formatting-demo/ngx-mat-datepicker-simple-formatting-demo.component';
-import { NgxMaskDateDemoComponent } from './pages/ngx-mask-date-demo/ngx-mask-date-demo.component'
+import { DateInputComponent } from './pages/date-input/date-input.component';
 
 
-const routes: Routes = [{ path: 'ngx-mat-datepicker-simple-formatting-demo', component: NgxMatDatepickerSimpleFormattingDemoComponent },
-{ path: 'ngx-mask-date-demo', component: NgxMaskDateDemoComponent }];
+const routes: Routes = [{ path: 'date-input', component: DateInputComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
