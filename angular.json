@@ -169,6 +169,37 @@
           }
         }
       }
+    },
+    "ngx-formcontrol-companion": {
+      "projectType": "library",
+      "root": "projects/ngx-formcontrol-companion",
+      "sourceRoot": "projects/ngx-formcontrol-companion/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-formcontrol-companion/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-formcontrol-companion/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-formcontrol-companion/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-formcontrol-companion/src/test.ts",
+            "tsConfig": "projects/ngx-formcontrol-companion/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-formcontrol-companion/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-mat-datepicker-simple-formatting"
