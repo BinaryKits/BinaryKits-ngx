@@ -11,12 +11,14 @@ import { NgxMatDatepickerSimpleFormattingModule } from 'ngx-mat-datepicker-simpl
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDateModule } from 'ngx-mask-date';
 import { NgxMaskModule } from 'ngx-mask';
-import { DateInputComponent } from './pages/date-input/date-input.component'
+import { DateInputComponent } from './pages/date-input/date-input.component';
+import { FormcontrolCompanionComponent } from './pages/formcontrol-companion/formcontrol-companion.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     DateInputComponent,
+    FormcontrolCompanionComponent,
   ],
   imports: [
     BrowserModule,
