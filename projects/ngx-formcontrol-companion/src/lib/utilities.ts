@@ -1,6 +1,6 @@
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 
-// Visit all the child controls
+// Iterate all the nested child controls in FormGroup
 export function* iterateAllChildControls(root: FormGroup) {
     function* f(node: FormGroup | FormArray, path: string): Generator<[string, AbstractControl], void, undefined> {
         const delimiter = path ? "." : ""

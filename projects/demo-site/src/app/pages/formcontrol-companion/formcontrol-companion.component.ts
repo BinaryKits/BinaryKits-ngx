@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { iterateAllChildControls, updateAllComputedBags } from 'ngx-formcontrol-companion';
-import { ComputedBagConfig } from 'projects/ngx-formcontrol-companion/src/lib/computed/ComputedBagConfig';
-import { ComputedBagContext } from 'projects/ngx-formcontrol-companion/src/public-api';
+import { updateAllComputedBags, updateControlDisableStatus, ComputeContext, ComputedBagConfig } from 'ngx-formcontrol-companion';
+import { } from 'ngx-formcontrol-companion/computedBag'
+
+class localComputeContext extends ComputeContext {
+  constructor(public formRawValue: any) {
+    super(formRawValue);
+  }
+}
 
 @Component({
   selector: 'app-formcontrol-companion',
@@ -10,6 +15,12 @@ import { ComputedBagContext } from 'projects/ngx-formcontrol-companion/src/publi
   styleUrls: ['./formcontrol-companion.component.scss']
 })
 export class FormcontrolCompanionComponent implements OnInit {
+  firstNameConfig = new ComputedBagConfig<localComputeContext>({
+    isDisabled: async (c: localComputeContext, p: string): Promise<boolean> => {
+      return c.formRawValue.firstName === "3"
+    }
+  })
+
   form = this.fb.group({
     firstName: ['', Validators.required],
     lastName: [''],
@@ -34,32 +45,17 @@ export class FormcontrolCompanionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    (this.form.controls['firstName'] as any).computedBagConfig = {
-      source: "a",
-      items: {
-        isDisabled: (c: ComputedBagContext, p: string): boolean => {
-          if (this.form.getRawValue().firstName === "3") {
-            return true
-          }
+    this.firstNameConfig.attachTo(this.form.controls["firstName"])
+    this.form.valueChanges.subscribe(async () => await this.onFormValueUpdate())
+  }
 
-          return false
-        }
-      } as { [key: string]: (context: ComputedBagContext, path: string) => any }
-    } as ComputedBagConfig
-    // updateComputedHooksFormGroup(this.form)
+  async onFormValueUpdate() {
+    const context = new localComputeContext(this.form.getRawValue())
+    await updateAllComputedBags(this.form, context)
 
-
-
-    this.form.valueChanges.subscribe(value => {
-      const context = new ComputedBagContext()
-      updateAllComputedBags(this.form, context)
-
-      for (const [p, c] of iterateAllChildControls(this.form)) {
-        const cs = c as any
-        if (cs.computedBag && cs.computedBag.isDisabled) {
-          c.disable({ emitEvent: false })
-        }
-      }
-    })
+    // Update disable
+    updateControlDisableStatus(this.form)
   }
 }
+
+
