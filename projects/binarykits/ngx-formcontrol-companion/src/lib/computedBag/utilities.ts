@@ -13,7 +13,7 @@ export function* iterateAllChildControls(root: FormGroup) {
             } else if (c instanceof FormGroup || c instanceof FormArray) {
                 yield* f(c, p)
             } else {
-                throw Error("")
+                throw Error("Not supported control type: " + c.constructor.name)
             }
         }
 

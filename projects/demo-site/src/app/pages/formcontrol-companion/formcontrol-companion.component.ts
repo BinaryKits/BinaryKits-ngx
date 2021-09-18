@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
-import { updateAllComputedBags, updateControlDisableStatus, ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { computerBag, ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion';
 
 class localComputeContext extends ComputeContext {
-  constructor(public formRawValue: any) {
-    super(formRawValue);
+  constructor(public root: FormGroup) {
+    super(root);
   }
 }
 
@@ -15,8 +15,8 @@ class localComputeContext extends ComputeContext {
 })
 export class FormcontrolCompanionComponent implements OnInit {
   firstNameConfig = new ComputedBagConfig<localComputeContext>({
-    isDisabled: async (c: localComputeContext, p: string): Promise<boolean> => {
-      return c.formRawValue.firstName === "3"
+    isDisabled: async (context, control, path): Promise<boolean> => {
+      return control.value === "3"
     }
   })
 
@@ -49,11 +49,11 @@ export class FormcontrolCompanionComponent implements OnInit {
   }
 
   async onFormValueUpdate() {
-    const context = new localComputeContext(this.form.getRawValue())
-    await updateAllComputedBags(this.form, context)
+    const context = new localComputeContext(this.form)
+    await computerBag.updateAllBags(context)
 
     // Update disable
-    updateControlDisableStatus(this.form)
+    computerBag.updateControlDisableStatus(this.form)
   }
 }
 

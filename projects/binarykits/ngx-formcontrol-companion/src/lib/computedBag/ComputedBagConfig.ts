@@ -1,6 +1,6 @@
 import { AbstractControl } from "@angular/forms"
 
-type computeLogic<TContext> = (context: TContext, path: string) => Promise<any>
+type computeLogic<TContext> = (context: TContext, control: AbstractControl, path: string) => Promise<any>
 
 export class ComputedBagConfig<TContext> {
 

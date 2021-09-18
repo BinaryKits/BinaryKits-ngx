@@ -16,7 +16,7 @@ async function compute<T extends ComputeContext>(control: AbstractControl, conte
     return result
 }
 
-export async function updateAllComputedBags<T extends ComputeContext>(root: FormGroup, context: T): Promise<void> {
+export async function updateAllBags<T extends ComputeContext>(root: FormGroup, context: T): Promise<void> {
     for (const [p, c] of iterateAllChildControls(root)) {
         const computedBag = (c as any).computedBag
         if (!computedBag) {
