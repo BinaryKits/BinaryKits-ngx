@@ -1,1 +1,1 @@
-export * from '@binarykits/ngx-formcontrol-companion/src/lib/computedBag'
+export * from './lib/Sample'

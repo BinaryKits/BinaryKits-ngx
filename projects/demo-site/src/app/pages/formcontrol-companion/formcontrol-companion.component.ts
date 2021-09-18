@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { computerBag, ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion';
+import { computerBag, ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion/computedBag';
 
 class localComputeContext extends ComputeContext {
   constructor(public root: FormGroup) {

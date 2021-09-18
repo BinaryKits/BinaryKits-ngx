@@ -1,7 +1,7 @@
 import { AbstractControl, FormGroup } from "@angular/forms";
-import { iterateAllChildControls } from "./utilities";
-import { ComputedBagConfig } from "./ComputedBagConfig";
+import { iterateAllChildControls } from "@binarykits/ngx-formcontrol-companion/utilities";
 import { ComputeContext } from "./ComputeContext";
+import { ComputedBagConfig } from "./ComputedBagConfig";
 
 type keyValuePair = { [key: string]: any }
 

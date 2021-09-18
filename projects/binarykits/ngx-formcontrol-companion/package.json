@@ -10,7 +10,7 @@
   },
   "description": "Collection of Angular formcontrol helpers",
   "main": "bundles/ngx-formcontrol-companion.umd.js",
-  "scripts": {
+  "scripts_removed": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ruan Yiping",
