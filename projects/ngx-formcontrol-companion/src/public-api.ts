@@ -4,4 +4,4 @@
 
 export * from './lib/utilities'
 export * from './lib/FormControlPath'
-// export * from './lib/computedBag/public-api'
+export * from './lib/computedBag/public-api'
