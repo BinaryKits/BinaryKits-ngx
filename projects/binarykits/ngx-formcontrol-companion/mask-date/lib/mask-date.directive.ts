@@ -1,5 +1,5 @@
 import { Directive, ElementRef, forwardRef, HostListener, Inject, Input, OnChanges } from '@angular/core'
-import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms'
+import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import { config, CustomKeyboardEvent, IConfig, MaskDirective, MaskService } from 'ngx-mask'
@@ -7,14 +7,13 @@ import { DOCUMENT } from '@angular/common'
 
 @Directive({
     selector: 'input[bkMaskDate]',
-    providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => NgxMaskDateDirective), multi: true, },
-    { provide: NG_VALIDATORS, useExisting: forwardRef(() => NgxMaskDateDirective), multi: true, },
+    providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MaskDateDirective), multi: true, },
+    { provide: NG_VALIDATORS, useExisting: forwardRef(() => MaskDateDirective), multi: true, },
         MaskService,
     ]
 })
-export class NgxMaskDateDirective extends MaskDirective implements ControlValueAccessor, OnChanges, Validator {
+export class MaskDateDirective extends MaskDirective implements ControlValueAccessor, OnChanges, Validator {
     input: HTMLInputElement
-    localMaskService: MaskService
 
     @Input('bkMaskDate') public maskExpression!: string
     @Input() public formControlFormat = 'YYYY-MM-DD'
@@ -26,7 +25,6 @@ export class NgxMaskDateDirective extends MaskDirective implements ControlValueA
         protected el: ElementRef<HTMLInputElement>) {
         super(document, maskService, iConfig)
         this.input = el.nativeElement
-        this.localMaskService = maskService
         dayjs.extend(customParseFormat)
     }
 
