@@ -1,12 +1,13 @@
 {
-  "name": "binary-kits-ngx",
+  "name": "binarykits-ngx",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev": "ng build ngx-mat-datepicker-simple-formatting && ng build ngx-formcontrol-companion && ng serve --hmr --aot=false"
   },
   "private": true,
   "dependencies": {

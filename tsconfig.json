@@ -14,6 +14,14 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
+      "@binarykits/ngx-formcontrol-companion/*": [
+        "projects/binarykits/ngx-formcontrol-companion/*",
+        "projects/binarykits/ngx-formcontrol-companion"
+      ],
+      "@binarykits/ngx-formcontrol-companion": [
+        "dist/binarykits/ngx-formcontrol-companion/*",
+        "dist/binarykits/ngx-formcontrol-companion"
+      ],
       "ngx-mask-date": [
         "dist/ngx-mask-date/ngx-mask-date",
         "dist/ngx-mask-date"

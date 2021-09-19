@@ -1,0 +1,14 @@
+{
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public-api.ts",
+      "cssUrl": "inline"
+    }
+  },
+  "peerDependencies": {
+    "@angular/common": "^12.2.0",
+    "@angular/core": "^12.2.0",
+    "ngx-mask": "^12.0.0",
+    "dayjs": "^1.10.7"
+  }
+}

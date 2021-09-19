@@ -33,7 +33,11 @@ export class NgxMatDatepickerSimpleFormattingDirective implements OnInit, OnDest
   @HostListener("dateInput", ["$event"])
   dateInput(event: MatDatepickerInputEvent<Date>): void {
     const newValue = dayjs(event.value).format(this.sourceFormat)
-    this.sourceFormControl.setValue(newValue)
+
+    // Avoid infinite loop
+    if (newValue !== this.sourceFormControl.value) {
+      this.sourceFormControl.setValue(newValue)
+    }
   }
 
   // Source formControl changes value => datepicker
@@ -50,6 +54,7 @@ export class NgxMatDatepickerSimpleFormattingDirective implements OnInit, OnDest
     }
 
     this.input.value = newValue
+    this.input.dispatchEvent(new Event("input"))  // Trigger calendar UI update selected date
   }
 
   get sourceFormControl(): AbstractControl {

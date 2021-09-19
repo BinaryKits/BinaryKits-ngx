@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../../coverage/ngx-mask-date'),
+      dir: require('path').join(__dirname, '../../../coverage/binarykits/ngx-formcontrol-companion'),
       subdir: '.',
       reporters: [
         { type: 'html' },

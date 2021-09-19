@@ -1,6 +1,6 @@
 {
   "name": "@binarykits/ngx-mat-datepicker-simple-formatting",
-  "version": "12.1.4",
+  "version": "12.1.6",
   "peerDependencies": {
     "@angular/common": "^12.2.0",
     "@angular/core": "^12.2.0",
@@ -20,7 +20,7 @@
   "keywords": [
     "angular material",
     "datepicker",
-	  "dayjs"
+    "dayjs"
   ],
   "author": "Ruan Yiping",
   "license": "MIT",

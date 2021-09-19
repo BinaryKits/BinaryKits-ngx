@@ -1,0 +1,18 @@
+{
+  "name": "@binarykits/ngx-formcontrol-companion",
+  "version": "12.0.0",
+  "peerDependencies": {
+    "@angular/common": "^12.2.0",
+    "@angular/core": "^12.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "description": "Collection of Angular formcontrol helpers",
+  "main": "bundles/ngx-formcontrol-companion.umd.js",
+  "scripts_removed": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ruan Yiping",
+  "license": "MIT"
+}
