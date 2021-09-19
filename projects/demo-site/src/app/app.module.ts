@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatNativeDateModule } from '@angular/material/core'
 import { NgxMatDatepickerSimpleFormattingModule } from 'ngx-mat-datepicker-simple-formatting';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxMaskDateModule } from 'ngx-mask-date';
+import { NgxMaskDateModule } from '@binarykits/ngx-formcontrol-companion/mask-date';
 import { NgxMaskModule } from 'ngx-mask';
 import { DateInputComponent } from './pages/date-input/date-input.component';
 import { FormcontrolCompanionComponent } from './pages/formcontrol-companion/formcontrol-companion.component'
