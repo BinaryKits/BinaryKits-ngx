@@ -2,8 +2,7 @@ import { AbstractControl, FormGroup } from "@angular/forms";
 import { iterateAllChildControls } from "@binarykits/ngx-formcontrol-companion/utilities";
 import { ComputeContext } from "./ComputeContext";
 import { ComputedBagConfig } from "./ComputedBagConfig";
-
-type keyValuePair = { [key: string]: any }
+import { keyValuePair } from "./KeyValuePair";
 
 async function compute<T extends ComputeContext>(control: AbstractControl, context: T, path: string): Promise<keyValuePair> {
     const computedConfig = (control as any).computedBag.config as ComputedBagConfig<T>
