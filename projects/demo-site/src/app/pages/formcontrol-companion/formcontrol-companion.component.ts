@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { computerBag, ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion/computedBag';
+import { ComputeRunner } from '@binarykits/ngx-formcontrol-companion/computedBag';
+import { ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion/computedBag';
 
 class localComputeContext extends ComputeContext {
+  rootSnapshot: any
+
   constructor(public root: FormGroup) {
     super(root);
+    this.rootSnapshot = root.getRawValue()
   }
 }
 
@@ -40,20 +44,20 @@ export class FormcontrolCompanionComponent implements OnInit {
     })])
   });
 
+  runner: ComputeRunner<localComputeContext>
+
   constructor(private fb: FormBuilder) {
+    this.firstNameConfig.attachTo(this.form.controls["firstName"])
+    this.runner = new ComputeRunner(() => new localComputeContext(this.form))
   }
 
   ngOnInit(): void {
-    this.firstNameConfig.attachTo(this.form.controls["firstName"])
     this.form.valueChanges.subscribe(async () => await this.onFormValueUpdate())
   }
 
   async onFormValueUpdate() {
-    const context = new localComputeContext(this.form)
-    await computerBag.updateAllBags(context)
-
-    // Update disable
-    computerBag.updateControlDisableStatus(this.form)
+    await this.runner.updateAll()
+    this.runner.recursivelyDisable(this.form)
   }
 }
 
