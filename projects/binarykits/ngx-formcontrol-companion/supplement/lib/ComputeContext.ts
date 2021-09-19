@@ -1,5 +1,5 @@
 import { FormGroup } from "@angular/forms";
-import { keyValuePair } from "./types/KeyValuePair";
+import { ATTACH_POINT } from "./helpers";
 
 export abstract class ComputeContext {
     public readonly formValue: any

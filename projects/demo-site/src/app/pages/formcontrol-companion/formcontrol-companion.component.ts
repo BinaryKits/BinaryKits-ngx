@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ComputeRunner } from '@binarykits/ngx-formcontrol-companion/computedBag';
-import { ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion/computedBag';
+import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { ComputeRunner } from '@binarykits/ngx-formcontrol-companion/supplement';
+import { ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion/supplement';
+import { ATTACH_POINT } from '@binarykits/ngx-formcontrol-companion/supplement/lib/helpers';
 import { debounceTime } from 'rxjs/operators'
 
 class localComputeContext extends ComputeContext {
@@ -50,6 +51,14 @@ export class FormcontrolCompanionComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.firstNameConfig.attachTo(this.form.controls["firstName"])
     this.runner = new ComputeRunner(() => new localComputeContext(this.form))
+
+
+    const s1 = Symbol("yiping")
+    const s2 = Symbol("yiping")
+
+    const a = { [s1]: " deeee", [s2]: " bbbbb" }
+    a[s1] = "5555555"
+    console.log(a)
   }
 
   ngOnInit(): void {
@@ -59,6 +68,10 @@ export class FormcontrolCompanionComponent implements OnInit {
   async onFormValueUpdate() {
     await this.runner.updateAll()
     this.runner.recursivelyDisable(this.form)
+  }
+
+  queryComputedProperties(control: AbstractControl) {
+    return (control as any)[ATTACH_POINT].computedProperties
   }
 }
 

@@ -5,5 +5,5 @@
     <label for="last-name">Last Name: </label>
     <input id="last-name" type="text" formControlName="lastName">
 
-    {{ $any(form.controls['firstName']).computedBag.result | json }}
+    {{ queryComputedProperties(form.controls['firstName']) | json }}
 </form>
