@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ComputeRunner } from '@binarykits/ngx-formcontrol-companion/computedBag';
 import { ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion/computedBag';
+import { debounceTime } from 'rxjs/operators'
 
 class localComputeContext extends ComputeContext {
   rootSnapshot: any
@@ -52,7 +53,7 @@ export class FormcontrolCompanionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form.valueChanges.subscribe(async () => await this.onFormValueUpdate())
+    this.form.valueChanges.pipe(debounceTime(500)).subscribe(async () => await this.onFormValueUpdate())
   }
 
   async onFormValueUpdate() {
@@ -60,5 +61,4 @@ export class FormcontrolCompanionComponent implements OnInit {
     this.runner.recursivelyDisable(this.form)
   }
 }
-
 
