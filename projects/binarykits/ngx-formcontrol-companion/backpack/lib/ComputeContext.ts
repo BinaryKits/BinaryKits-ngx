@@ -1,5 +1,4 @@
 import { FormGroup } from "@angular/forms";
-import { ATTACH_POINT } from "./helpers";
 
 export abstract class ComputeContext {
     public readonly formValue: any

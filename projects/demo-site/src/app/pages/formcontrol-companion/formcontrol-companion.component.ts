@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
-import { ComputeRunner } from '@binarykits/ngx-formcontrol-companion/supplement';
-import { ComputeContext, ComputedBagConfig } from '@binarykits/ngx-formcontrol-companion/supplement';
-import { ATTACH_POINT } from '@binarykits/ngx-formcontrol-companion/supplement/lib/helpers';
+import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
+import { ComputeRunner, ComputeContext, ComputedPropertiesConfig, queryComputed, getBackpack, ComputeLogic } from '@binarykits/ngx-formcontrol-companion/backpack';
 import { debounceTime } from 'rxjs/operators'
 
 class localComputeContext extends ComputeContext {
   rootSnapshot: any
+  isFirstName4: boolean
 
   constructor(public root: FormGroup) {
     super(root);
     this.rootSnapshot = root.getRawValue()
+    this.isFirstName4 = this.rootSnapshot.firstName === "4"
   }
 }
 
@@ -20,11 +20,17 @@ class localComputeContext extends ComputeContext {
   styleUrls: ['./formcontrol-companion.component.scss']
 })
 export class FormcontrolCompanionComponent implements OnInit {
-  firstNameConfig = new ComputedBagConfig<localComputeContext>({
+  firstNameConfig = new ComputedPropertiesConfig<localComputeContext>({
     isDisabled: async (context, control, path): Promise<boolean> => {
       return control.value === "3"
     }
   })
+
+  lastNameConfig = new ComputedPropertiesConfig<localComputeContext>({
+    isReadonly: async (context, control, path): Promise<boolean> => {
+      return context.isFirstName4
+    }
+  }) 
 
   form = this.fb.group({
     firstName: ['', Validators.required],
@@ -50,19 +56,14 @@ export class FormcontrolCompanionComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.firstNameConfig.attachTo(this.form.controls["firstName"])
+    this.lastNameConfig.attachTo(this.form.controls["lastName"])
+
     this.runner = new ComputeRunner(() => new localComputeContext(this.form))
-
-
-    const s1 = Symbol("yiping")
-    const s2 = Symbol("yiping")
-
-    const a = { [s1]: " deeee", [s2]: " bbbbb" }
-    a[s1] = "5555555"
-    console.log(a)
   }
 
   ngOnInit(): void {
-    this.form.valueChanges.pipe(debounceTime(500)).subscribe(async () => await this.onFormValueUpdate())
+    this.form.valueChanges.pipe(debounceTime(100)).subscribe(async () => await this.onFormValueUpdate())
+    this.onFormValueUpdate()
   }
 
   async onFormValueUpdate() {
@@ -70,8 +71,7 @@ export class FormcontrolCompanionComponent implements OnInit {
     this.runner.recursivelyDisable(this.form)
   }
 
-  queryComputedProperties(control: AbstractControl) {
-    return (control as any)[ATTACH_POINT].computedProperties
-  }
+  queryComputed = queryComputed
+  getBackpack = getBackpack
 }
 
