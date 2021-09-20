@@ -30,7 +30,7 @@ export class MaskDateDirective extends MaskDirective implements ControlValueAcce
     }
 
     ngAfterViewInit(): void {
-        const value =  this._injector.get(NgControl).value
+        const value = this._injector.get(NgControl).value
         setTimeout(() => {
             this.writeValue(value)
         });
@@ -54,6 +54,10 @@ export class MaskDateDirective extends MaskDirective implements ControlValueAcce
     public onInput(e: CustomKeyboardEvent): void {
         super.onInput(e)
         this.updateFormControlFromInputValue(this.input.value)
+    }
+
+    @HostListener('click', ['$event'])
+    public onFocus(e: MouseEvent | CustomKeyboardEvent): void {
     }
 
     updateFormControlFromInputValue(value: string): void {
