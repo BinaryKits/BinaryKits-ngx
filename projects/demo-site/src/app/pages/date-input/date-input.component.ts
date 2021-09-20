@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class DateInputComponent implements OnInit {
   date1 = new FormControl('', { updateOn: 'blur' })
   date2 = new FormControl()
-  date3 = new FormControl()
+  date3 = new FormControl('2012-02-15')
 
   constructor() { }
 
