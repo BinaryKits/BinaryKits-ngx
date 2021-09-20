@@ -10,6 +10,12 @@ export class ComputeRunner<T extends ComputeContext> {
     }
 
     recursivelyDisable(root: FormGroup | FormArray) {
+        const r = root as any
+        if (r[ATTACH_POINT] && r[ATTACH_POINT].computedProperties.isDisabled) {
+            root.disable({ emitEvent: false })
+            return
+        }
+
         for (const [key, c] of Object.entries(root.controls)) {
             const g = c as any
             if (g[ATTACH_POINT] && g[ATTACH_POINT].computedProperties.isDisabled) {
