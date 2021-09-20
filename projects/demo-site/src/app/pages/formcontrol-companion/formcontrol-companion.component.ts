@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { ComputeRunner, ComputeContext, ComputedPropertiesConfig, queryComputed, getBackpack, ComputeLogic } from '@binarykits/ngx-formcontrol-companion/backpack';
 import { debounceTime } from 'rxjs/operators'
@@ -54,7 +54,7 @@ export class FormcontrolCompanionComponent implements OnInit {
 
   runner: ComputeRunner<localComputeContext>
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private ref: ChangeDetectorRef) {
     this.firstNameConfig.attachTo(this.form.controls["firstName"])
     this.lastNameConfig.attachTo(this.form.controls["lastName"])
 
@@ -67,8 +67,10 @@ export class FormcontrolCompanionComponent implements OnInit {
   }
 
   async onFormValueUpdate() {
+    this.ref.detach()
     await this.runner.updateAll()
     this.runner.recursivelyDisable(this.form)
+    this.ref.reattach()
   }
 
   queryComputed = queryComputed
