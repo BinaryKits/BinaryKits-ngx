@@ -1,8 +1,10 @@
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 
 // Iterate all the nested child controls in FormGroup
-export function* iterateAllChildControls(root: FormGroup) {
-    function* f(node: FormGroup | FormArray, path: string): Generator<[string, AbstractControl], void, undefined> {
+export function* iterateAllControls(root: FormGroup): Generator<[string, AbstractControl], void, undefined> {
+    function* f(path: string, node: FormGroup | FormArray): Generator<[string, AbstractControl], void, undefined> {
+        yield [path, node]
+
         const delimiter = path ? "." : ""
 
         for (const [key, c] of Object.entries(node.controls)) {
@@ -11,7 +13,7 @@ export function* iterateAllChildControls(root: FormGroup) {
             if (c instanceof FormControl) {
                 yield [p, c]
             } else if (c instanceof FormGroup || c instanceof FormArray) {
-                yield* f(c, p)
+                yield* f(p, c)
             } else {
                 throw Error("Not supported control type: " + c.constructor.name)
             }
@@ -20,6 +22,6 @@ export function* iterateAllChildControls(root: FormGroup) {
         return
     }
 
-    yield* f(root, "")
+    yield* f("", root)
 }
 
