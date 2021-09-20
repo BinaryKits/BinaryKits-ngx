@@ -1,5 +1,5 @@
-import { Directive, ElementRef, forwardRef, HostListener, Inject, Input, OnChanges } from '@angular/core'
-import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms'
+import { AfterViewInit, Directive, ElementRef, forwardRef, HostListener, Inject, Injector, Input, OnChanges, OnInit } from '@angular/core'
+import { ControlValueAccessor, NgControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import { config, CustomKeyboardEvent, IConfig, MaskDirective, MaskService } from 'ngx-mask'
@@ -12,7 +12,7 @@ import { DOCUMENT } from '@angular/common'
         MaskService,
     ]
 })
-export class MaskDateDirective extends MaskDirective implements ControlValueAccessor, OnChanges, Validator {
+export class MaskDateDirective extends MaskDirective implements ControlValueAccessor, OnChanges, Validator, AfterViewInit {
     input: HTMLInputElement
 
     @Input('bkMaskDate') public maskExpression!: string
@@ -22,10 +22,18 @@ export class MaskDateDirective extends MaskDirective implements ControlValueAcce
     constructor(@Inject(DOCUMENT) document: any,
         maskService: MaskService,
         @Inject(config) iConfig: IConfig,
-        protected el: ElementRef<HTMLInputElement>) {
+        protected el: ElementRef<HTMLInputElement>,
+        private _injector: Injector) {
         super(document, maskService, iConfig)
         this.input = el.nativeElement
         dayjs.extend(customParseFormat)
+    }
+
+    ngAfterViewInit(): void {
+        const value =  this._injector.get(NgControl).value
+        setTimeout(() => {
+            this.writeValue(value)
+        });
     }
 
     public async writeValue(inputValue: string | number | { value: string | number; disable?: boolean }): Promise<void> {
