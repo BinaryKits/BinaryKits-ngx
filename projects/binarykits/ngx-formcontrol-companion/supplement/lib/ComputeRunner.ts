@@ -1,5 +1,5 @@
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
-import { iterateAllChildControls } from "@binarykits/ngx-formcontrol-companion/utilities";
+import { iterateAllControls } from "@binarykits/ngx-formcontrol-companion/utilities";
 import { ComputContextFactory, ComputeContext } from "./ComputeContext";
 import { ComputedBagConfig } from "./ComputedBagConfig";
 import { ATTACH_POINT, keyValuePair } from "./helpers";
@@ -38,7 +38,7 @@ export class ComputeRunner<T extends ComputeContext> {
         const context = this.contextFactory()
         const result: keyValuePair = {}
 
-        for (const [p, c] of iterateAllChildControls(context.root)) {
+        for (const [p, c] of iterateAllControls(context.root)) {
             const computedBag = (c as any)[ATTACH_POINT]
             if (!computedBag) {
                 continue
