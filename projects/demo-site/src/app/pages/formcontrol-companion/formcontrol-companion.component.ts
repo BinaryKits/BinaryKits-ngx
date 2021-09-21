@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
-import { ComputeRunner, ComputeContext, ComputedPropertiesConfig, queryComputed, getBackpack, ComputeLogic } from '@binarykits/ngx-formcontrol-companion/backpack';
+import { ComputeRunner, ComputeContext, BackpackConfig, queryComputed, getBackpack, ComputeLogic } from '@binarykits/ngx-formcontrol-companion/backpack';
 import { debounceTime } from 'rxjs/operators'
 
 class localComputeContext extends ComputeContext {
@@ -20,13 +20,13 @@ class localComputeContext extends ComputeContext {
   styleUrls: ['./formcontrol-companion.component.scss']
 })
 export class FormcontrolCompanionComponent implements OnInit {
-  firstNameConfig = new ComputedPropertiesConfig<localComputeContext>({
+  firstNameConfig = new BackpackConfig<localComputeContext>({
     isDisabled: async (context, control, path): Promise<boolean> => {
       return control.value === "3"
     }
   })
 
-  lastNameConfig = new ComputedPropertiesConfig<localComputeContext>({
+  lastNameConfig = new BackpackConfig<localComputeContext>({
     isReadonly: async (context, control, path): Promise<boolean> => {
       return context.isFirstName4
     }

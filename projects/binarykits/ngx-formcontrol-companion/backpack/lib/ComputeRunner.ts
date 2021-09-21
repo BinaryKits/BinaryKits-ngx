@@ -52,7 +52,7 @@ export class ComputeRunner<T extends ComputeContext> {
     private async compute(control: AbstractControl, context: T, path: string, backpack: BackpackContainer<T>): Promise<keyValuePair> {
         const result: keyValuePair = {}
 
-        for (const [key, f] of Object.entries(backpack.computedPropertiesConfig.items)) {
+        for (const [key, f] of Object.entries(backpack.config.computedPropertyLogics)) {
             result[key] = await f(context, control, path)
         }
 
