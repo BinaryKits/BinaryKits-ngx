@@ -2,11 +2,11 @@
     <label for="first-name">First Name: </label>
     <input id="first-name" type="text" formControlName="firstName" required>
     <span>(Will be disabled if value is 3)</span>
-    <pre>{{ getBackpack(form.controls['firstName']).computedProperties | json }}</pre>
+    <pre>{{ backpack.retrieve(form.controls['firstName']).computedProperties | json }}</pre>
 
 
     <label for="last-name">Last Name:</label>
-    <input id="last-name" type="text" formControlName="lastName" [readonly]="queryComputed(form.controls['lastName'], 'isReadonly')">
+    <input id="last-name" type="text" formControlName="lastName" [readonly]="backpack.queryComputed(form.controls['lastName'], 'isReadonly')">
     <span>(Will be readonly if first name is 4)</span>
-    <pre>{{ getBackpack(form.controls['lastName']).computedProperties | json}}</pre>
+    <pre>{{ backpack.retrieve(form.controls['lastName']).computedProperties | json}}</pre>
 </form>

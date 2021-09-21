@@ -1,16 +1,14 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
-import { ComputeRunner, ComputeContext, BackpackConfig, queryComputed, getBackpack, ComputeLogic } from '@binarykits/ngx-formcontrol-companion/backpack';
+import { ComputeContext, BackpackConfig, BackpackService } from '@binarykits/ngx-formcontrol-companion/backpack';
 import { debounceTime } from 'rxjs/operators'
 
 class localComputeContext extends ComputeContext {
-  rootSnapshot: any
   isFirstName4: boolean
 
   constructor(public root: FormGroup) {
     super(root);
-    this.rootSnapshot = root.getRawValue()
-    this.isFirstName4 = this.rootSnapshot.firstName === "4"
+    this.isFirstName4 = this.formSnapshot.firstName === "4"
   }
 }
 
@@ -51,14 +49,13 @@ export class FormcontrolCompanionComponent implements OnInit {
       zip: ['']
     })])
   });
-
-  runner: ComputeRunner<localComputeContext>
+  backpack = new BackpackService()
 
   constructor(private fb: FormBuilder, private ref: ChangeDetectorRef) {
     this.firstNameConfig.attachTo(this.form.controls["firstName"])
     this.lastNameConfig.attachTo(this.form.controls["lastName"])
 
-    this.runner = new ComputeRunner(() => new localComputeContext(this.form))
+    // this.runner = new ComputeRunner(() => new localComputeContext(this.form))
   }
 
   ngOnInit(): void {
@@ -68,12 +65,9 @@ export class FormcontrolCompanionComponent implements OnInit {
 
   async onFormValueUpdate() {
     this.ref.detach()
-    await this.runner.updateAll()
-    this.runner.recursivelyDisable(this.form)
+    await this.backpack.updateComputedProperties(() => new localComputeContext(this.form))
+    this.backpack.recursivelyDisable(this.form)
     this.ref.reattach()
   }
-
-  queryComputed = queryComputed
-  getBackpack = getBackpack
 }
 

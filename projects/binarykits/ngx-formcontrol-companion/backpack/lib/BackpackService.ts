@@ -5,11 +5,10 @@ import { BackpackContainer } from "./BackpackContainer";
 import { ComputContextFactory, ComputeContext } from "./ComputeContext";
 import { keyValuePair, ATTACH_POINT } from "./helpers";
 
-@Injectable()
 export class BackpackService {
     // Should not have any member, almost static
 
-    static recursivelyDisable(root: FormGroup | FormArray) {
+    recursivelyDisable(root: FormGroup | FormArray) {
         if (this.queryComputed(root, "isDisabled")) {
             root.disable({ emitEvent: false })
             return
@@ -28,12 +27,12 @@ export class BackpackService {
         }
     }
 
-    static async updateComputedProperties<T extends ComputeContext>(contextFactory: ComputContextFactory<T>): Promise<keyValuePair> {
+    async updateComputedProperties<T extends ComputeContext>(contextFactory: ComputContextFactory<T>): Promise<keyValuePair> {
         const context = contextFactory()
         const result: keyValuePair = {}
 
         for (const [p, c] of iterateAllControls(context.root)) {
-            const backpack = this.getBackpack<T>(c)
+            const backpack = this.retrieve<T>(c)
             if (!backpack) {
                 continue
             }
@@ -45,25 +44,20 @@ export class BackpackService {
         return result
     }
 
-    static getBackpack<T extends ComputeContext>(control: AbstractControl): BackpackContainer<T> {
+    retrieve<T extends ComputeContext>(control: AbstractControl): BackpackContainer<T> {
         return (control as any)[ATTACH_POINT] as BackpackContainer<T>
     }
     
-    static queryComputed<T extends ComputeContext>(control: AbstractControl, property: string): any {
-        const backpack = this.getBackpack<T>(control)
+    queryComputed<T extends ComputeContext>(control: AbstractControl, property: string): any {
+        const backpack = this.retrieve<T>(control)
         if (!backpack) {
             return undefined
         }
     
         return backpack.computedProperties[property]
     }
-    
-    static attachConfigToControl<T extends ComputeContext>(container: BackpackContainer<T>, control: AbstractControl): AbstractControl {
-        (control as any)[ATTACH_POINT] = container
-        return control
-    }
 
-    private static async compute<T extends ComputeContext>(control: AbstractControl, context: T, path: string, backpack: BackpackContainer<T>): Promise<keyValuePair> {
+    private async compute<T extends ComputeContext>(control: AbstractControl, context: T, path: string, backpack: BackpackContainer<T>): Promise<keyValuePair> {
         const result: keyValuePair = {}
 
         for (const [key, f] of Object.entries(backpack.config.computedPropertyLogics)) {
