@@ -1,10 +1,10 @@
 import { FormGroup } from "@angular/forms";
 
 export abstract class ComputeContext {
-    public readonly formValue: any
+    public readonly formSnapshot: any
 
     constructor(public root: FormGroup) {
-        this.formValue = root.getRawValue()
+        this.formSnapshot = root.getRawValue()
     }
 }
 
