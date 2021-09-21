@@ -2,8 +2,9 @@ import { AbstractControl } from "@angular/forms"
 import { ComputeContext } from "./ComputeContext"
 import { BackpackContainer } from "./BackpackContainer"
 import { ATTACH_POINT } from "./helpers"
+import { ControlContext } from ".."
 
-export type ComputeLogic<T extends ComputeContext> = (context: T, control: AbstractControl, path: string) => Promise<any>
+export type ComputeLogic<T extends ComputeContext> = (local: ControlContext<T>) => Promise<any>
 
 export class BackpackConfig<T extends ComputeContext> {
 
