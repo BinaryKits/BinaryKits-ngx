@@ -5,13 +5,14 @@ import { ATTACH_POINT } from "./helpers"
 
 export type ComputeLogic<T extends ComputeContext> = (context: T, control: AbstractControl, path: string) => Promise<any>
 
-export class ComputedPropertiesConfig<T extends ComputeContext> {
+export class BackpackConfig<T extends ComputeContext> {
 
-    constructor(public items: { [key: string]: ComputeLogic<T> }) {
+    constructor(public computedPropertyLogics: { [key: string]: ComputeLogic<T> }) {
     }
 
     public attachTo(control: AbstractControl): AbstractControl {
-        (control as any)[ATTACH_POINT] = new BackpackContainer<T>(this)
+        const container = new BackpackContainer(this)
+        ;(control as any)[ATTACH_POINT] = container
         return control
     }
 }

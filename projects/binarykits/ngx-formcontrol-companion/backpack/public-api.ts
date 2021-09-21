@@ -1,6 +1,6 @@
 export * from './lib/ComputeContext'
-export * from './lib/ComputedPropertiesConfig'
-export * from './lib/ComputeRunner'
+export * from './lib/BackpackConfig'
+export * from './lib/BackpackService'
 export * from './lib/helpers'
 
 
