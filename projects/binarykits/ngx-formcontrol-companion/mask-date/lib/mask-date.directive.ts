@@ -18,6 +18,7 @@ export class MaskDateDirective extends MaskDirective implements ControlValueAcce
     @Input('bkMaskDate') public maskExpression!: string
     @Input() public formControlFormat = 'YYYY-MM-DD'
     @Input() public userInputFormat!: string
+    @Input() public ignoreDefaultNgxMaskClickHandler = true
 
     constructor(@Inject(DOCUMENT) document: any,
         maskService: MaskService,
@@ -58,6 +59,11 @@ export class MaskDateDirective extends MaskDirective implements ControlValueAcce
 
     @HostListener('click', ['$event'])
     public onFocus(e: MouseEvent | CustomKeyboardEvent): void {
+        if (this.ignoreDefaultNgxMaskClickHandler) {
+            return
+        }
+
+        super.onFocus(e)
     }
 
     updateFormControlFromInputValue(value: string): void {
