@@ -49,11 +49,7 @@ export class BackpackService {
         return context
     }
 
-    retrieve<T extends ComputeContext>(control: AbstractControl): BackpackContainer<T> | undefined {
-        if (!control) {
-            return undefined
-        }
-        
+    retrieve<T extends ComputeContext>(control: AbstractControl): BackpackContainer<T> {
         return (control as any)[symbols.backpack] as BackpackContainer<T>
     }
     

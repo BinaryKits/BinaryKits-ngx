@@ -10,3 +10,10 @@
     <span>(Will be readonly if first name is 4)</span>
     <pre>{{ backpack.retrieve(form.controls['lastName']).computedProperties | json}}</pre>
 </form>
+
+<h3><b>Error count: </b></h3>
+<div>Root: {{ errorCounter.query(form) }}</div>
+<div>addresses: {{ errorCounter.query(form.controls['addresses']) }}</div>
+
+<h3><b>Error report: </b></h3>
+<pre>{{ errorReport | json }}</pre>
