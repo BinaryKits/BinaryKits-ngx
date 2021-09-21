@@ -1,8 +1,8 @@
 import { AbstractControl } from "@angular/forms"
 import { ComputeContext } from "./ComputeContext"
 import { BackpackContainer } from "./BackpackContainer"
-import { ATTACH_POINT } from "./helpers"
-import { ControlContext } from ".."
+import { symbols } from "./helpers"
+import { ControlContext } from "./ControlContext"
 
 export type ComputeLogic<T extends ComputeContext> = (local: ControlContext<T>) => Promise<any>
 
@@ -12,8 +12,7 @@ export class BackpackConfig<T extends ComputeContext> {
     }
 
     public attachTo(control: AbstractControl): AbstractControl {
-        const container = new BackpackContainer(this)
-        ;(control as any)[ATTACH_POINT] = container
+        (control as any)[symbols.backpack] = new BackpackContainer(this)
         return control
     }
 }

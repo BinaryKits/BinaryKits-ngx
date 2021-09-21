@@ -3,7 +3,7 @@ import { iterateAllControls } from "@binarykits/ngx-formcontrol-companion/utilit
 import { BackpackContainer } from "./BackpackContainer";
 import { ComputContextFactory, ComputeContext } from "./ComputeContext";
 import { ControlContext } from "./ControlContext";
-import { keyValuePair, ATTACH_POINT } from "./helpers";
+import { keyValuePair, symbols } from "./helpers";
 
 export class BackpackService {
     // Should not have any member, almost static
@@ -49,12 +49,8 @@ export class BackpackService {
         return context
     }
 
-    retrieve<T extends ComputeContext>(control: AbstractControl): BackpackContainer<T> | undefined {
-        if (!control) {
-            return undefined
-        }
-        
-        return (control as any)[ATTACH_POINT] as BackpackContainer<T>
+    retrieve<T extends ComputeContext>(control: AbstractControl): BackpackContainer<T> {
+        return (control as any)[symbols.backpack] as BackpackContainer<T>
     }
     
     queryComputed<T extends ComputeContext>(control: AbstractControl, property: string): any {

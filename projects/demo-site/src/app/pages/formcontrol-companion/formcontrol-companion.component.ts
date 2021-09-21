@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
-import { ComputeContext, BackpackConfig, BackpackService, ATTACH_POINT } from '@binarykits/ngx-formcontrol-companion/backpack';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ComputeContext, BackpackConfig, BackpackService } from '@binarykits/ngx-formcontrol-companion/backpack';
+import { ErrorCounterService } from "@binarykits/ngx-formcontrol-companion/error-counter"
 import { debounceTime } from 'rxjs/operators'
 
 class sampleContext extends ComputeContext {
@@ -37,9 +38,9 @@ export class FormcontrolCompanionComponent implements OnInit {
 
   form = this.fb.group({
     firstName: ['', Validators.required],
-    lastName: [''],
+    lastName: ['', Validators.required],
     addresses: this.fb.array([this.fb.group({
-      street: [''],
+      street: ['', Validators.required],
       city: [''],
       state: [''],
       zip: [''],
@@ -55,6 +56,8 @@ export class FormcontrolCompanionComponent implements OnInit {
     })])
   });
   backpack = new BackpackService()
+  errorCounter = new ErrorCounterService()
+  errorReport = {}
 
   constructor(private fb: FormBuilder, private ref: ChangeDetectorRef) {
     this.firstNameConfig.attachTo(this.form.controls["firstName"])
@@ -70,7 +73,12 @@ export class FormcontrolCompanionComponent implements OnInit {
     this.ref.detach()
     const resultContext = await this.backpack.updateComputedProperties(() => new sampleContext(this.form))
     this.backpack.recursivelyDisable(this.form)
+    this.errorCounter.updateErrorCounts(this.form)
     this.ref.reattach()
+
+    // For debug
+    this.errorReport = this.errorCounter.getErrorReport(this.form)
+
   }
 }
 
