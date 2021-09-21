@@ -12,8 +12,7 @@ export class BackpackConfig<T extends ComputeContext> {
     }
 
     public attachTo(control: AbstractControl): AbstractControl {
-        const container = new BackpackContainer(this)
-        ;(control as any)[ATTACH_POINT] = container
+        (control as any)[ATTACH_POINT] = new BackpackContainer(this)
         return control
     }
 }
