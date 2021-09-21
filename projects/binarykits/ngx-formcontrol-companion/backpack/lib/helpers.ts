@@ -18,3 +18,8 @@ export function queryComputed<T extends ComputeContext>(control: AbstractControl
 
     return backpack.computedProperties[property]
 }
+
+export function attachConfigToControl<T extends ComputeContext>(container: BackpackContainer<T>, control: AbstractControl): AbstractControl {
+    (control as any)[ATTACH_POINT] = container
+    return control
+}
