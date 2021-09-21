@@ -2,9 +2,9 @@ import { AbstractControl } from "@angular/forms"
 import { ComputeContext } from ".."
 import { BackpackContainer } from "./BackpackContainer"
 
-export type keyValuePair = { [key: string]: any }
+const ATTACH_POINT = Symbol("backpack")
 
-export const ATTACH_POINT = Symbol("supplement")
+export type keyValuePair = { [key: string]: any }
 
 export function getBackpack<T extends ComputeContext>(control: AbstractControl): BackpackContainer<T> {
     return (control as any)[ATTACH_POINT] as BackpackContainer<T>
