@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
+import { AbstractControl, FormArray, FormGroup } from "@angular/forms";
 import { iterateAllControls } from "@binarykits/ngx-formcontrol-companion/utilities";
 import { BackpackContainer } from "./BackpackContainer";
 import { ComputContextFactory, ComputeContext } from "./ComputeContext";
+import { ControlContext } from "./ControlContext";
 import { keyValuePair, ATTACH_POINT } from "./helpers";
 
 export class BackpackService {
@@ -29,7 +29,6 @@ export class BackpackService {
 
     async updateComputedProperties<T extends ComputeContext>(contextFactory: ComputContextFactory<T>): Promise<keyValuePair> {
         const context = contextFactory()
-        const result: keyValuePair = {}
 
         for (const [p, c] of iterateAllControls(context.root)) {
             const backpack = this.retrieve<T>(c)
@@ -37,14 +36,24 @@ export class BackpackService {
                 continue
             }
 
-            backpack.computedProperties = await this.compute(c, context, p, backpack)
-            result[p] = backpack.computedProperties
+            backpack.computedProperties = {}  // Reset
+            context.result[p] = backpack.computedProperties
+            
+            // Compute each logic
+            const localContext = new ControlContext<T>(p, c, context)
+            for (const [propertyName, f] of Object.entries(backpack.config.computedPropertyLogics)) {
+                backpack.computedProperties[propertyName] = await f(localContext)
+            }
         }
 
-        return result
+        return context
     }
 
-    retrieve<T extends ComputeContext>(control: AbstractControl): BackpackContainer<T> {
+    retrieve<T extends ComputeContext>(control: AbstractControl): BackpackContainer<T> | undefined {
+        if (!control) {
+            return undefined
+        }
+        
         return (control as any)[ATTACH_POINT] as BackpackContainer<T>
     }
     
@@ -55,15 +64,5 @@ export class BackpackService {
         }
     
         return backpack.computedProperties[property]
-    }
-
-    private async compute<T extends ComputeContext>(control: AbstractControl, context: T, path: string, backpack: BackpackContainer<T>): Promise<keyValuePair> {
-        const result: keyValuePair = {}
-
-        for (const [key, f] of Object.entries(backpack.config.computedPropertyLogics)) {
-            result[key] = await f(context, control, path)
-        }
-
-        return result
     }
 }

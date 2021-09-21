@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
-import { ComputeContext, BackpackConfig, BackpackService } from '@binarykits/ngx-formcontrol-companion/backpack';
+import { ComputeContext, BackpackConfig, BackpackService, ATTACH_POINT } from '@binarykits/ngx-formcontrol-companion/backpack';
 import { debounceTime } from 'rxjs/operators'
 
-class localComputeContext extends ComputeContext {
+class sampleContext extends ComputeContext {
   isFirstName4: boolean
 
   constructor(public root: FormGroup) {
@@ -18,15 +18,20 @@ class localComputeContext extends ComputeContext {
   styleUrls: ['./formcontrol-companion.component.scss']
 })
 export class FormcontrolCompanionComponent implements OnInit {
-  firstNameConfig = new BackpackConfig<localComputeContext>({
-    isDisabled: async (context, control, path): Promise<boolean> => {
-      return control.value === "3"
+  firstNameConfig = new BackpackConfig<sampleContext>({
+    isDisabled: async (local): Promise<boolean> => {
+      return local.control.value === "3"
+    },
+    test: async (local): Promise<void> => {
+      const isDisabledResult = local.result["isDisabled"]
+      console.log("Running result isDisabled exists: ", isDisabledResult)
     }
   })
 
-  lastNameConfig = new BackpackConfig<localComputeContext>({
-    isReadonly: async (context, control, path): Promise<boolean> => {
-      return context.isFirstName4
+  lastNameConfig = new BackpackConfig<sampleContext>({
+    isReadonly: async (local): Promise<boolean> => {
+      const siblingResult = local.computeContext.result["firstName"]
+      return local.computeContext.isFirstName4
     }
   }) 
 
@@ -54,8 +59,6 @@ export class FormcontrolCompanionComponent implements OnInit {
   constructor(private fb: FormBuilder, private ref: ChangeDetectorRef) {
     this.firstNameConfig.attachTo(this.form.controls["firstName"])
     this.lastNameConfig.attachTo(this.form.controls["lastName"])
-
-    // this.runner = new ComputeRunner(() => new localComputeContext(this.form))
   }
 
   ngOnInit(): void {
@@ -65,7 +68,7 @@ export class FormcontrolCompanionComponent implements OnInit {
 
   async onFormValueUpdate() {
     this.ref.detach()
-    await this.backpack.updateComputedProperties(() => new localComputeContext(this.form))
+    const resultContext = await this.backpack.updateComputedProperties(() => new sampleContext(this.form))
     this.backpack.recursivelyDisable(this.form)
     this.ref.reattach()
   }
