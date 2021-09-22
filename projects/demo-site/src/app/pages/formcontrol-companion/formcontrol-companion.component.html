@@ -14,6 +14,8 @@
 <h3><b>Error count: </b></h3>
 <div>Root: {{ errorCounter.query(form) }}</div>
 <div>addresses: {{ errorCounter.query(form.controls['addresses']) }}</div>
+<div>addresses.0: {{ errorCounter.query(form.get('addresses.0')!) }}</div>
+
 
 <h3><b>Error report: </b></h3>
 <pre>{{ errorReport | json }}</pre>
