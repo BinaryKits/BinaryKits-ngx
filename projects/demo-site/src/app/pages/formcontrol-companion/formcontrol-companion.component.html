@@ -23,6 +23,13 @@
             <input formControlName="street">
         </div>
     </div>
+
+    <!-- <div *ngFor="let group of (form.get('addresses') | childFormGroupsAsArray); index as i">
+        <div [formGroup]="group">
+            <label>Addresses.{{ i }}.street</label>
+            <input formControlName="street">
+        </div>
+    </div> -->
 </form>
 
 <h3><b>Error count: </b></h3>

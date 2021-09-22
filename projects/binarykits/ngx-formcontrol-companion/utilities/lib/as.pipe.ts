@@ -13,6 +13,17 @@ export class AsFormArrayPipe implements PipeTransform {
 }
 
 @Pipe({
+  name: 'childFormGroupsAsArray'
+})
+export class ChildFormGroupsArrayPipe implements PipeTransform {
+
+  transform(node: AbstractControl | null): FormGroup[] {
+    return (node as FormArray).controls as FormGroup[]
+  }
+
+}
+
+@Pipe({
   name: 'asFormGroup'
 })
 export class AsFormGroupPipe implements PipeTransform {
