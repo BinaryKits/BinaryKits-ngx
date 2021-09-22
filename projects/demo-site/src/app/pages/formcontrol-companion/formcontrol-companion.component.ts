@@ -37,9 +37,16 @@ export class FormcontrolCompanionComponent implements OnInit {
     }
   }) 
 
+  middleNameConfig = new BackpackConfig<sampleContext>({
+    isDisabled: async (local): Promise<boolean> => {
+      return local.computeContext.root.controls["firstName"].value === "5"
+    }
+  }) 
+
   form = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
+    middleName: [''],
     addresses: this.fb.array([this.fb.group({
       street: ['', Validators.required],
       city: [''],
@@ -62,6 +69,7 @@ export class FormcontrolCompanionComponent implements OnInit {
   constructor(private fb: FormBuilder, private ref: ChangeDetectorRef, public backpack: BackpackService, public errorCounter: ErrorCounterService) {
     this.firstNameConfig.attachTo(this.form.controls["firstName"])
     this.lastNameConfig.attachTo(this.form.controls["lastName"])
+    this.middleNameConfig.attachTo(this.form.controls["middleName"])
   }
 
   ngOnInit(): void {
@@ -72,13 +80,12 @@ export class FormcontrolCompanionComponent implements OnInit {
   async onFormValueUpdate() {
     this.ref.detach()
     const resultContext = await this.backpack.updateComputedProperties(() => new sampleContext(this.form))
-    this.backpack.recursivelyDisable(this.form)
+    this.backpack.recursivelyUpdateDisableStatus(this.form)
     this.errorCounter.updateErrorCounts(this.form)
     this.ref.reattach()
 
     // For debug
     this.errorReport = this.errorCounter.getErrorReport(this.form)
-
   }
 }
 
