@@ -6,20 +6,37 @@
 
 
     <label for="last-name">Last Name:</label>
-    <input id="last-name" type="text" formControlName="lastName" [readonly]="backpack.queryComputed(form.controls['lastName'], 'isReadonly')">
+    <input id="last-name" type="text" formControlName="lastName"
+        [readonly]="backpack.queryComputed(form.controls['lastName'], 'isReadonly')">
     <span>(Will be readonly if first name is 4)</span>
     <pre>{{ backpack.retrieve(form.controls['lastName']).computedProperties | json}}</pre>
 
     <label for="last-name">Middle Name:</label>
-    <input id="last-name" type="text" formControlName="middleName">
-    <span>(Will be readonly if first name is 5)</span>
+    <input id="last-name" type="text" formControlName="middleName" *ngIf="backpack.queryComputed(form.controls['middleName'], 'isVisible')">
+    <span>(Will be disabled if first name is 5, hiden when 6)</span>
     <pre>{{ backpack.retrieve(form.controls['middleName']).computedProperties | json}}</pre>
+
+
+    <div *ngFor="let group of (form.get('addresses') | asFormArray).controls; index as i">
+        <div [formGroup]="group | asFormGroup">
+            <label>Addresses.{{ i }}.street</label>
+            <input formControlName="street">
+        </div>
+    </div>
+
+    <!-- <div *ngFor="let group of (form.get('addresses') | childFormGroupsAsArray); index as i">
+        <div [formGroup]="group">
+            <label>Addresses.{{ i }}.street</label>
+            <input formControlName="street">
+        </div>
+    </div> -->
 </form>
 
 <h3><b>Error count: </b></h3>
 <div>Root: {{ errorCounter.query(form) }}</div>
 <div>addresses: {{ errorCounter.query(form.controls['addresses']) }}</div>
 <div>addresses.0: {{ errorCounter.query(form.get('addresses.0')!) }}</div>
+<div>addresses.1: {{ errorCounter.query(form.get('addresses.1')!) }}</div>
 
 
 <h3><b>Error report: </b></h3>

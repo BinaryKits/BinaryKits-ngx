@@ -21,12 +21,11 @@ class sampleContext extends ComputeContext {
 })
 export class FormcontrolCompanionComponent implements OnInit {
   firstNameConfig = new BackpackConfig<sampleContext>({
-    isDisabled: async (local): Promise<boolean> => {
-      return local.control.value === "3"
+    earlierLogic: async (local): Promise<string> => {
+      return "Done"
     },
-    test: async (local): Promise<void> => {
-      const isDisabledResult = local.result["isDisabled"]
-      console.log("Running result isDisabled exists: ", isDisabledResult)
+    laterLogic: async (local): Promise<void> => {
+      console.log("Running result ealierLogic exists: ", local.result["earlierLogic"])
     }
   })
 
@@ -40,6 +39,9 @@ export class FormcontrolCompanionComponent implements OnInit {
   middleNameConfig = new BackpackConfig<sampleContext>({
     isDisabled: async (local): Promise<boolean> => {
       return local.computeContext.root.controls["firstName"].value === "5"
+    },
+    isVisible: async (local): Promise<boolean> => {
+      return local.computeContext.root.controls["firstName"].value !== "6"
     }
   }) 
 
@@ -57,7 +59,7 @@ export class FormcontrolCompanionComponent implements OnInit {
         this.fb.control('')
       ]),
     }), this.fb.group({
-      street: [''],
+      street: ['', Validators.required],
       city: [''],
       state: [''],
       zip: ['']
