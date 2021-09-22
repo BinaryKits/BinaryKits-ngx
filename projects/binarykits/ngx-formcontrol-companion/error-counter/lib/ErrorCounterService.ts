@@ -8,23 +8,42 @@ export const symbols = { errorCount: Symbol("errorCount") }
 export class ErrorCounterService {
     
     updateErrorCounts(node: FormGroup | FormArray): number {
+        // Set all to 0
+        if (!node.invalid) {
+            this.clearErrorCounts(node)
+            return 0
+        }
+
+        // Count total
         let total = 0
 
-        for (const [key, c] of Object.entries(node.controls)) {
-            if (!c.invalid) {
+        for (const [_, c] of Object.entries(node.controls)) {
+            
+            if (c instanceof FormControl) {
+                if (c.invalid) {
+                    total += 1
+                }
                 continue
             }
             
-            if (c instanceof FormControl) {
-                total += 1
-                continue
-            } else if (c instanceof FormGroup || c instanceof FormArray) {
+            if (c instanceof FormGroup || c instanceof FormArray) {
                 total += this.updateErrorCounts(c)
             }
         }
 
         this.setErrorCount(node, total)
         return total
+    }
+
+    // Recursively set error count to 0, check node invalid before using
+    clearErrorCounts(node: FormGroup | FormArray) {
+        this.setErrorCount(node, 0)
+
+        for (const [_, c] of Object.entries(node.controls)) {
+            if (c instanceof FormGroup || c instanceof FormArray) {
+                this.clearErrorCounts(c)
+            } 
+        }
     }
 
     setErrorCount(control: FormGroup | FormArray, count: number) {
@@ -51,11 +70,8 @@ export class ErrorCounterService {
             if (c.invalid) {
                 if (c instanceof FormControl) {
                     result[p] = c.errors
-                } else if (c instanceof FormGroup) {
-                    result[p] = "[FormGroup]"
-                }
-                else if (c instanceof FormArray) {
-                    result[p] = "[FormArray]"
+                } else if (c instanceof FormGroup || c instanceof FormArray) {
+                    result[p] = this.query(c)
                 }
             }
         }
