@@ -8,7 +8,7 @@ export function* iterateAllControls(root: FormGroup): Generator<[string, Abstrac
         const delimiter = path ? "." : ""
 
         for (const [key, c] of Object.entries(node.controls)) {
-            const p = node instanceof FormGroup ? `${path}${delimiter}${key}` : `${path}[${key}]`
+            const p = `${path}${delimiter}${key}`
 
             if (c instanceof FormControl) {
                 yield [p, c]
