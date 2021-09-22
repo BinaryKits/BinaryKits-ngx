@@ -1,8 +1,10 @@
+import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { iterateAllControls } from "@binarykits/ngx-formcontrol-companion/utilities";
 
 export const symbols = { errorCount: Symbol("errorCount") }
 
+@Injectable()
 export class ErrorCounterService {
     
     updateErrorCounts(node: FormGroup | FormArray): number {
