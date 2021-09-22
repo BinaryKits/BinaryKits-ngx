@@ -1,3 +1,4 @@
+import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormGroup } from "@angular/forms";
 import { iterateAllControls } from "@binarykits/ngx-formcontrol-companion/utilities";
 import { BackpackContainer } from "./BackpackContainer";
@@ -5,9 +6,8 @@ import { ComputContextFactory, ComputeContext } from "./ComputeContext";
 import { ControlContext } from "./ControlContext";
 import { keyValuePair, symbols } from "./helpers";
 
+@Injectable()
 export class BackpackService {
-    // Should not have any member, almost static
-
     recursivelyDisable(root: FormGroup | FormArray) {
         if (this.queryComputed(root, "isDisabled")) {
             root.disable({ emitEvent: false })

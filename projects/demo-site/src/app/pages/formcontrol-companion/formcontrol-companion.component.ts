@@ -16,7 +16,8 @@ class sampleContext extends ComputeContext {
 @Component({
   selector: 'app-formcontrol-companion',
   templateUrl: './formcontrol-companion.component.html',
-  styleUrls: ['./formcontrol-companion.component.scss']
+  styleUrls: ['./formcontrol-companion.component.scss'],
+  providers: [BackpackService, ErrorCounterService]
 })
 export class FormcontrolCompanionComponent implements OnInit {
   firstNameConfig = new BackpackConfig<sampleContext>({
@@ -55,11 +56,10 @@ export class FormcontrolCompanionComponent implements OnInit {
       zip: ['']
     })])
   });
-  backpack = new BackpackService()
-  errorCounter = new ErrorCounterService()
+  
   errorReport = {}
 
-  constructor(private fb: FormBuilder, private ref: ChangeDetectorRef) {
+  constructor(private fb: FormBuilder, private ref: ChangeDetectorRef, public backpack: BackpackService, public errorCounter: ErrorCounterService) {
     this.firstNameConfig.attachTo(this.form.controls["firstName"])
     this.lastNameConfig.attachTo(this.form.controls["lastName"])
   }
