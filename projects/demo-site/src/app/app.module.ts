@@ -13,16 +13,13 @@ import { MaskDateModule } from '@binarykits/ngx-formcontrol-companion/mask-date'
 import { NgxMaskModule } from 'ngx-mask';
 import { DateInputComponent } from './pages/date-input/date-input.component';
 import { FormcontrolCompanionComponent } from './pages/formcontrol-companion/formcontrol-companion.component'
-import { AsFormArrayPipe, AsFormGroupPipe, ChildFormGroupsArrayPipe } from '@binarykits/ngx-formcontrol-companion/utilities';
+import { AsPipesModule } from '@binarykits/ngx-formcontrol-companion/pipes';
 
 @NgModule({
   declarations: [
     AppComponent,
     DateInputComponent,
-    FormcontrolCompanionComponent,
-    AsFormArrayPipe,
-    AsFormGroupPipe,
-    ChildFormGroupsArrayPipe
+    FormcontrolCompanionComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +33,8 @@ import { AsFormArrayPipe, AsFormGroupPipe, ChildFormGroupsArrayPipe } from '@bin
     MatNativeDateModule,
     NgxMatDatepickerSimpleFormattingModule,
     MaskDateModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    AsPipesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
