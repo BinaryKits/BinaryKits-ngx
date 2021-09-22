@@ -6,23 +6,33 @@ import { ComputContextFactory, ComputeContext } from "./ComputeContext";
 import { ControlContext } from "./ControlContext";
 import { keyValuePair, symbols } from "./helpers";
 
+
+const noEmit = { emitEvent: false }
+
 @Injectable()
 export class BackpackService {
-    recursivelyDisable(root: FormGroup | FormArray) {
+
+    recursivelyUpdateDisableStatus(root: FormGroup | FormArray) {
         if (this.queryComputed(root, "isDisabled")) {
-            root.disable({ emitEvent: false })
+            root.disable(noEmit)
             return
+        }
+        if (root.disabled) {
+            root.enable(noEmit) // Remove disabled
         }
 
         for (const [key, c] of Object.entries(root.controls)) {
             if (this.queryComputed(c, "isDisabled")) {
-                c.disable({ emitEvent: false })  // FormGroup/Array child will be disabled
+                c.disable(noEmit)  // FormGroup/Array child will be disabled
                 continue
+            }
+            if (c.disabled) {
+                c.enable(noEmit) // Remove disabled
             }
 
             // Check the children
             if (c instanceof FormGroup || c instanceof FormArray) {
-                this.recursivelyDisable(c)
+                this.recursivelyUpdateDisableStatus(c)
             }
         }
     }

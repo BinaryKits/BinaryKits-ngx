@@ -9,6 +9,11 @@
     <input id="last-name" type="text" formControlName="lastName" [readonly]="backpack.queryComputed(form.controls['lastName'], 'isReadonly')">
     <span>(Will be readonly if first name is 4)</span>
     <pre>{{ backpack.retrieve(form.controls['lastName']).computedProperties | json}}</pre>
+
+    <label for="last-name">Middle Name:</label>
+    <input id="last-name" type="text" formControlName="middleName">
+    <span>(Will be readonly if first name is 5)</span>
+    <pre>{{ backpack.retrieve(form.controls['middleName']).computedProperties | json}}</pre>
 </form>
 
 <h3><b>Error count: </b></h3>
