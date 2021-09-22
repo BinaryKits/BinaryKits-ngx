@@ -21,11 +21,11 @@ class sampleContext extends ComputeContext {
 })
 export class FormcontrolCompanionComponent implements OnInit {
   firstNameConfig = new BackpackConfig<sampleContext>({
-    ealierLogic: async (local): Promise<string> => {
+    earlierLogic: async (local): Promise<string> => {
       return "Done"
     },
     laterLogic: async (local): Promise<void> => {
-      console.log("Running result ealierLogic exists: ", local.result["ealierLogic"])
+      console.log("Running result ealierLogic exists: ", local.result["earlierLogic"])
     }
   })
 

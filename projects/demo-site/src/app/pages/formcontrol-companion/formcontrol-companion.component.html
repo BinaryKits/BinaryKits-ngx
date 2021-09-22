@@ -17,10 +17,9 @@
     <pre>{{ backpack.retrieve(form.controls['middleName']).computedProperties | json}}</pre>
 
 
-    <div *ngFor="let group of $any(form.controls['addresses']).controls; index as i">
-        address: {{ i }}
-        <div [formGroup]="group">
-            <label>Addresses.0.street</label>
+    <div *ngFor="let group of (form.get('addresses') | asFormArray).controls; index as i">
+        <div [formGroup]="group | asFormGroup">
+            <label>Addresses.{{ i }}.street</label>
             <input formControlName="street">
         </div>
     </div>
