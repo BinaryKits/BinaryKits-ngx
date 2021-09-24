@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ComputeContext, BackpackConfig, BackpackService } from '@binarykits/ngx-formcontrol-companion/backpack';
 import { ErrorCounterService } from "@binarykits/ngx-formcontrol-companion/error-counter"
+import { AbstractControlPath } from "@binarykits/ngx-formcontrol-companion/utilities"
+
 import { debounceTime } from 'rxjs/operators'
 
 class sampleContext extends ComputeContext {
@@ -72,6 +74,12 @@ export class FormcontrolCompanionComponent implements OnInit {
     this.firstNameConfig.attachTo(this.form.controls["firstName"])
     this.lastNameConfig.attachTo(this.form.controls["lastName"])
     this.middleNameConfig.attachTo(this.form.controls["middleName"])
+
+    // const t = new AbstractControlPath("a.b.c.d")
+    // console.log(t.parent(2).toString())
+    // console.log(t.sibling("sibling").toString())
+    // console.log(t.child(["e","0", "f"]).toString())
+    // console.log(new AbstractControlPath("a").parent().toString())
   }
 
   ngOnInit(): void {
