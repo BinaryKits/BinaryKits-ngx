@@ -30,7 +30,7 @@ export class AbstractControlPath {
     }
 
     // "a.0", return 0
-    get arrayIndex(): number {
+    get indexInArray(): number {
         return Number(this.path[this.path.length - 1])
     }
 
