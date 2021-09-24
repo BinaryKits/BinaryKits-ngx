@@ -80,6 +80,7 @@ export class FormcontrolCompanionComponent implements OnInit {
     // console.log(t.sibling("sibling").toString())
     // console.log(t.child(["e","0", "f"]).toString())
     // console.log(new AbstractControlPath("a").parent().toString())
+    // console.log(new AbstractControlPath("a.b.c.3").arrayIndex.toString())
   }
 
   ngOnInit(): void {

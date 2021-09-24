@@ -1,5 +1,5 @@
 export class AbstractControlPath {
-    readonly path: Array<string | number>
+    private readonly path: Array<string | number>
 
     constructor(path: Array<string | number> | string) {
         if (!Array.isArray(path)) {
@@ -29,7 +29,16 @@ export class AbstractControlPath {
         return new AbstractControlPath([...this.path.slice(0, -1), siblingName])
     }
 
+    // "a.0", return 0
+    get arrayIndex(): number {
+        return Number(this.path[this.path.length - 1])
+    }
+
     toString(): string {
         return this.path.join(".")
     }
+
+    toArray(): Array<string | number>{
+        return [...this.path]
+    } 
 }
