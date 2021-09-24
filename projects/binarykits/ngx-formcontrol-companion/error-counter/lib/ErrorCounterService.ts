@@ -69,9 +69,9 @@ export class ErrorCounterService {
         for (const [p, c] of iterateAllControls(root)) {
             if (c.invalid) {
                 if (c instanceof FormControl) {
-                    result[p] = c.errors
+                    result[p.toString()] = c.errors
                 } else if (c instanceof FormGroup || c instanceof FormArray) {
-                    result[p] = this.query(c)
+                    result[p.toString()] = this.query(c)
                 }
             }
         }

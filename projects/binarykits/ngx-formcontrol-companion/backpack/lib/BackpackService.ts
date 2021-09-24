@@ -47,7 +47,7 @@ export class BackpackService {
             }
 
             backpack.computedProperties = {}  // Reset
-            context.result[p] = backpack.computedProperties
+            context.result[p.toString()] = backpack.computedProperties
             
             // Compute each logic
             const localContext = new ControlContext<T>(p, c, context)
