@@ -139,23 +139,23 @@
         }
       }
     },
-    "ngx-formcontrol-companion": {
+    "ngx-form-kit": {
       "projectType": "library",
-      "root": "projects/binarykits/ngx-formcontrol-companion",
-      "sourceRoot": "projects/binarykits/ngx-formcontrol-companion/src",
+      "root": "projects/binarykits/ngx-form-kit",
+      "sourceRoot": "projects/binarykits/ngx-form-kit/src",
       "prefix": "bk",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/binarykits/ngx-formcontrol-companion/ng-package.json"
+            "project": "projects/binarykits/ngx-form-kit/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/binarykits/ngx-formcontrol-companion/tsconfig.lib.prod.json"
+              "tsConfig": "projects/binarykits/ngx-form-kit/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/binarykits/ngx-formcontrol-companion/tsconfig.lib.json"
+              "tsConfig": "projects/binarykits/ngx-form-kit/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -163,13 +163,13 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/binarykits/ngx-formcontrol-companion/src/test.ts",
-            "tsConfig": "projects/binarykits/ngx-formcontrol-companion/tsconfig.spec.json",
-            "karmaConfig": "projects/binarykits/ngx-formcontrol-companion/karma.conf.js"
+            "main": "projects/binarykits/ngx-form-kit/src/test.ts",
+            "tsConfig": "projects/binarykits/ngx-form-kit/tsconfig.spec.json",
+            "karmaConfig": "projects/binarykits/ngx-form-kit/karma.conf.js"
           }
         }
       }
     }
   },
-  "defaultProject": "ngx-formcontrol-companion"
+  "defaultProject": "ngx-form-kit"
 }

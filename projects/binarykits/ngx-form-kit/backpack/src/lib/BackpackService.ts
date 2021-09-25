@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, FormArray, FormGroup } from "@angular/forms";
-import { iterateAllControls } from "@binarykits/ngx-formcontrol-companion";
+import { iterateAllControls } from "@binarykits/ngx-form-kit";
 import { BackpackContainer } from "./BackpackContainer";
 import { ComputContextFactory, ComputeContext } from "./ComputeContext";
 import { ControlContext } from "./ControlContext";
