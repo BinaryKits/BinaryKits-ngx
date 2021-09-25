@@ -14,13 +14,13 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@binarykits/ngx-formcontrol-companion/*": [
-        "projects/binarykits/ngx-formcontrol-companion/*",
-        "projects/binarykits/ngx-formcontrol-companion"
+      "@binarykits/ngx-form-kit/*": [
+        "projects/binarykits/ngx-form-kit/*",
+        "projects/binarykits/ngx-form-kit"
       ],
-      "@binarykits/ngx-formcontrol-companion": [
-        "dist/binarykits/ngx-formcontrol-companion/*",
-        "dist/binarykits/ngx-formcontrol-companion"
+      "@binarykits/ngx-form-kit": [
+        "dist/binarykits/ngx-form-kit/*",
+        "dist/binarykits/ngx-form-kit"
       ],
       "@binarykits/ngx-mat-datepicker-simple-formatting/*": [
         "projects/binarykits/ngx-mat-datepicker-simple-formatting/*",
