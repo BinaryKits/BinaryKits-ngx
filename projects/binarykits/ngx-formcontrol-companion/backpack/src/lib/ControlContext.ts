@@ -1,6 +1,6 @@
 import { AbstractControl } from "@angular/forms";
 import { AbstractControlPath } from "@binarykits/ngx-formcontrol-companion/utilities";
-import { keyValuePair } from "..";
+import { keyValuePair } from "./helpers";
 import { ComputeContext } from "./ComputeContext";
 
 export class ControlContext<T extends ComputeContext> {
