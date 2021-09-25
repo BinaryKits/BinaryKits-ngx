@@ -5,21 +5,21 @@
   "projects": {
     "ngx-mat-datepicker-simple-formatting": {
       "projectType": "library",
-      "root": "projects/ngx-mat-datepicker-simple-formatting",
-      "sourceRoot": "projects/ngx-mat-datepicker-simple-formatting/src",
+      "root": "projects/binarykits/ngx-mat-datepicker-simple-formatting",
+      "sourceRoot": "projects/binarykits/ngx-mat-datepicker-simple-formatting/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ngx-mat-datepicker-simple-formatting/ng-package.json"
+            "project": "projects/binarykits/ngx-mat-datepicker-simple-formatting/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-mat-datepicker-simple-formatting/tsconfig.lib.prod.json"
+              "tsConfig": "projects/binarykits/ngx-mat-datepicker-simple-formatting/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ngx-mat-datepicker-simple-formatting/tsconfig.lib.json"
+              "tsConfig": "projects/binarykits/ngx-mat-datepicker-simple-formatting/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,9 +27,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-mat-datepicker-simple-formatting/src/test.ts",
-            "tsConfig": "projects/ngx-mat-datepicker-simple-formatting/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-mat-datepicker-simple-formatting/karma.conf.js"
+            "main": "projects/binarykits/ngx-mat-datepicker-simple-formatting/src/test.ts",
+            "tsConfig": "projects/binarykits/ngx-mat-datepicker-simple-formatting/tsconfig.spec.json",
+            "karmaConfig": "projects/binarykits/ngx-mat-datepicker-simple-formatting/karma.conf.js"
           }
         }
       }
