@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ComputeContext, BackpackConfig, BackpackService } from '@binarykits/ngx-formcontrol-companion/backpack';
-import { ErrorCounterService } from "@binarykits/ngx-formcontrol-companion/error-counter"
-import { AbstractControlPath } from "@binarykits/ngx-formcontrol-companion/utilities"
+import { ComputeContext, BackpackConfig, BackpackService } from '@binarykits/ngx-formcontrol-companion/backpack/src';
+import { ErrorCounterService } from "@binarykits/ngx-formcontrol-companion/error-counter/src"
+
 
 import { debounceTime } from 'rxjs/operators'
 
