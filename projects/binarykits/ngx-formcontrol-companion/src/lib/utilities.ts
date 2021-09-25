@@ -1,5 +1,5 @@
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
-import { AbstractControlPath } from "./AbstractControlPath";
+import { AbstractControlPath } from "./AbstractControlPath"
 
 // Iterate all the nested child controls in FormGroup
 export function* iterateAllControls(root: FormGroup): Generator<[AbstractControlPath, AbstractControl], void, undefined> {
