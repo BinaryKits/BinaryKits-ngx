@@ -22,13 +22,13 @@
         "dist/binarykits/ngx-formcontrol-companion/*",
         "dist/binarykits/ngx-formcontrol-companion"
       ],
-      "ngx-mask-date": [
-        "dist/ngx-mask-date/ngx-mask-date",
-        "dist/ngx-mask-date"
+      "@binarykits/ngx-mat-datepicker-simple-formatting/*": [
+        "projects/binarykits/ngx-mat-datepicker-simple-formatting/*",
+        "projects/binarykits/ngx-mat-datepicker-simple-formatting"
       ],
-      "ngx-mat-datepicker-simple-formatting": [
-        "dist/ngx-mat-datepicker-simple-formatting/ngx-mat-datepicker-simple-formatting",
-        "dist/ngx-mat-datepicker-simple-formatting"
+      "@binarykits/ngx-mat-datepicker-simple-formatting": [
+        "dist/binarykits/ngx-mat-datepicker-simple-formatting/*",
+        "dist/binarykits/ngx-mat-datepicker-simple-formatting"
       ]
     },
     "experimentalDecorators": true,
