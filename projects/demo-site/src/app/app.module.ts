@@ -7,7 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
 import { MatNativeDateModule } from '@angular/material/core'
-import { NgxMatDatepickerSimpleFormattingModule } from 'ngx-mat-datepicker-simple-formatting';
+import { NgxMatDatepickerSimpleFormattingModule } from '@binarykits/ngx-mat-datepicker-simple-formatting';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaskDateModule } from '@binarykits/ngx-formcontrol-companion/mask-date';
 import { NgxMaskModule } from 'ngx-mask';

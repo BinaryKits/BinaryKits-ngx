@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev": "ng build ngx-mat-datepicker-simple-formatting && ng build ngx-formcontrol-companion && ng serve --hmr --aot=false"
+    "dev": "ng serve --hmr --port=4300"
   },
   "private": true,
   "dependencies": {
