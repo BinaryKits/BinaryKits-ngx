@@ -1,9 +1,9 @@
 {
   "name": "@binarykits/ngx-form-kit",
-  "version": "12.0.0",
+  "version": "12.0.1",
   "peerDependencies": {
-    "@angular/common": "^12.2.0",
-    "@angular/core": "^12.2.0"
+    "@angular/common": "^12.0.0",
+    "@angular/core": "^12.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
@@ -15,5 +15,12 @@
   },
   "author": "Ruan Yiping",
   "license": "MIT",
-  "sideEffects": false
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BinaryKits/BinaryKits-ngx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BinaryKits/BinaryKits-ngx/issues"
+  }
 }
