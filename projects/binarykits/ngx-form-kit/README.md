@@ -14,4 +14,4 @@ This library can help you organize logics for `abstract control` (`form control`
 
 ## Demo site
 
-[Demo](https://stackblitz.com/edit/angular-material-date-5srxwu?file=src/app/app.component.html).
+[Demo](https://stackblitz.com/edit/ngx-form-kit-demo?file=src%2Fapp%2Fapp.component.ts).
