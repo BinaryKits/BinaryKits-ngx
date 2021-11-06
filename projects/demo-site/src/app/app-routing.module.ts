@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DateInputComponent } from './pages/date-input/date-input.component';
-import { FormcontrolCompanionComponent } from './pages/formcontrol-companion/formcontrol-companion.component';
+import { NgxFormKitDemoComponent } from './pages/ngx-form-kit-demo/ngx-form-kit-demo.component';
 
 
-const routes: Routes = [{ path: 'date-input', component: DateInputComponent },
-{ path: 'formcontrol-companion', component: FormcontrolCompanionComponent }];
+const routes: Routes = [
+  { path: 'ngx-mat-datepicker-simple-formatting', component: DateInputComponent },
+  { path: 'ngx-form-kit', component: NgxFormKitDemoComponent }
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

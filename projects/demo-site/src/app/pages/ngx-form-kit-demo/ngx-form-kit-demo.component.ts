@@ -2,8 +2,6 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ComputeContext, BackpackConfig, BackpackService } from '@binarykits/ngx-form-kit/backpack';
 import { ErrorCounterService } from "@binarykits/ngx-form-kit/error-counter"
-
-
 import { debounceTime } from 'rxjs/operators'
 
 class sampleContext extends ComputeContext {
@@ -16,12 +14,12 @@ class sampleContext extends ComputeContext {
 }
 
 @Component({
-  selector: 'app-formcontrol-companion',
-  templateUrl: './formcontrol-companion.component.html',
-  styleUrls: ['./formcontrol-companion.component.scss'],
+  selector: 'app-ngx-form-kit-demo',
+  templateUrl: './ngx-form-kit-demo.component.html',
+  styleUrls: ['./ngx-form-kit-demo.component.scss'],
   providers: [BackpackService, ErrorCounterService]
 })
-export class FormcontrolCompanionComponent implements OnInit {
+export class NgxFormKitDemoComponent implements OnInit {
   firstNameConfig = new BackpackConfig<sampleContext>({
     earlierLogic: async (local): Promise<string> => {
       return "Done"
