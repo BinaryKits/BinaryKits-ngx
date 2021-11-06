@@ -12,14 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaskDateModule } from '@binarykits/ngx-form-kit/mask-date';
 import { NgxMaskModule } from 'ngx-mask';
 import { DateInputComponent } from './pages/date-input/date-input.component';
-import { FormcontrolCompanionComponent } from './pages/formcontrol-companion/formcontrol-companion.component'
 import { AsPipesModule } from '@binarykits/ngx-form-kit/pipes';
+import { NgxFormKitDemoComponent } from './pages/ngx-form-kit-demo/ngx-form-kit-demo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DateInputComponent,
-    FormcontrolCompanionComponent
+    NgxFormKitDemoComponent
   ],
   imports: [
     BrowserModule,
