@@ -1,6 +1,5 @@
 # ngx-mat-datepicker-simple-formatting
 
-
 ## Installing
 
     npm install @binarykits/ngx-mat-datepicker-simple-formatting
