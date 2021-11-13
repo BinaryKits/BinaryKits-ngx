@@ -1,11 +1,6 @@
 {
   "$schema": "../../../../node_modules/ng-packagr/ng-package.schema.json",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "dayjs": "dayjs",
-      "dayjs/plugin/customParseFormat": "customParseFormat",
-      "ngx-mask": "ngx-mask"
-    }
+    "entryFile": "src/public-api.ts"
   }
 }
