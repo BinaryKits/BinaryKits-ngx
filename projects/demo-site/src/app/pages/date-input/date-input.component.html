@@ -10,10 +10,10 @@
 <mat-form-field appearance="fill">
     <mat-label>Choose a date</mat-label>
     <!-- For display and edit, same value as formControl -->
-    <input matInput [formControl]="date1" bkMaskDate="d0-M0-0000" userInputFormat="DD-MM-YYYY" [validation]="true" [dropSpecialCharacters]="false" [showMaskTyped]="true">
+    <input matInput [formControl]="date1" bkMaskDate="d0-M0-0000" userInputFormat="DD-MM-YYYY" formControlFormat="DD-MM-YYYY" [validation]="true" [dropSpecialCharacters]="false" [showMaskTyped]="true">
 
     <!-- To hold picker's value, hidden -->
-    <input [matDatepicker]="picker1" [bkMatDatepickerSimpleFormatting]="date1" sourceformat="DD-MM-YYYY" class="shadow">
+    <input [matDatepicker]="picker1" [bkMatDatepickerSimpleFormatting]="date1" sourceFormat="DD-MM-YYYY" class="shadow">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
@@ -23,7 +23,7 @@
 <mat-form-field appearance="fill">
     <mat-label>Choose a date</mat-label>
     <input matInput [formControl]="date2" bkMaskDate="0000-M0-d0" userInputFormat="YYYY-MM-DD" [validation]="true" [dropSpecialCharacters]="false" [showMaskTyped]="true">
-    <input [matDatepicker]="picker2" [bkMatDatepickerSimpleFormatting]="date2" class="shadow">
+    <input [matDatepicker]="picker2" [bkMatDatepickerSimpleFormatting]="date2" sourceFormat="YYYY-MM-DD" class="shadow">
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
 </mat-form-field>
