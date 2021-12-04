@@ -7,9 +7,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./date-input.component.scss']
 })
 export class DateInputComponent implements OnInit {
-  date1 = new FormControl('', { updateOn: 'blur' })
+  date1 = new FormControl('31-08-1993', { updateOn: 'blur' })
   date2 = new FormControl()
-  date3 = new FormControl('2012-02-15')
+  date3 = new FormControl('2012-03-25')
 
   constructor() { }
 
