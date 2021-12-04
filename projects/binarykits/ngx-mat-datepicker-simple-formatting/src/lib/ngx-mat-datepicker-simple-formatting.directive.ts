@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class NgxMatDatepickerSimpleFormattingDirective implements OnInit, OnDestroy {
   @Input() bkMatDatepickerSimpleFormatting!: AbstractControl
   @Input() sourceFormat = "YYYY-MM-DD"
-  input: HTMLInputElement
+  input: HTMLInputElement  // matDatePicker will always save "MM/DD/YYYY" here
   subscriptions: Subscription[] = []
   matDatePickerFormat = "MM/DD/YYYY"
 
