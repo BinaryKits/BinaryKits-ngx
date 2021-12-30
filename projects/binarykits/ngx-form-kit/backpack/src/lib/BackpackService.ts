@@ -71,4 +71,13 @@ export class BackpackService {
     
         return backpack.computedProperties[property]
     }
+
+    setComputed<T extends ComputeContext>(control: AbstractControl, property: string, value: any): void {
+        const backpack = this.retrieve<T>(control)
+        if (!backpack) {
+            return undefined
+        }
+
+        backpack.computedProperties[property] = value
+    }
 }
