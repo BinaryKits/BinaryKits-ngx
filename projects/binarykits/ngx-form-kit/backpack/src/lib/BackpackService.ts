@@ -14,20 +14,22 @@ export class BackpackService {
 
     recursivelyUpdateDisableStatus(root: FormGroup | FormArray) {
         if (this.queryComputed(root, "isDisabled")) {
-            root.disable(noEmit)
+            root.disable(noEmit)  // FormGroup/Array children will be disabled
             return
         }
+        
         if (root.disabled) {
-            root.enable(noEmit) // Remove disabled
+            root.enable(noEmit) // Clear disabled for children
         }
 
         for (const [key, c] of Object.entries(root.controls)) {
             if (this.queryComputed(c, "isDisabled")) {
-                c.disable(noEmit)  // FormGroup/Array child will be disabled
+                c.disable(noEmit)  // FormGroup/Array children will be disabled
                 continue
             }
+            
             if (c.disabled) {
-                c.enable(noEmit) // Remove disabled
+                c.enable(noEmit) // Clear disabled children
             }
 
             // Check the children
